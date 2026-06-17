@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background: black;
+      color: white; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    #clock {
+      font-size: 10vw;
+    }
+  </style>
+</head>
+<body>
+
+<div id="clock">00:00:00</div>
+
+<script>
+  let startTime = "23:45:30";
+
+  let parts = startTime.split(":");
+
+  let hours = parseInt(parts[0]);
+  let minutes = parseInt(parts[1]);
+  let seconds = parseInt(parts[2]);
+
+  function updateTime() {
+    seconds++;
+
+    if (seconds >= 60) {
+      seconds = 0;
+      minutes++;
+    }
+    if (minutes >= 60) {
+      minutes = 0;
+      hours++;
+    }
+    if (hours >= 24) {
+      hours = 0;
+    }
+
+    document.getElementById("clock").textContent =
+      String(hours).padStart(2, '0') + ":" +
+      String(minutes).padStart(2, '0') + ":" +
+      String(seconds).padStart(2, '0');
+  }
+
+  document.getElementById("clock").textContent = startTime;
+
+  setInterval(updateTime, 1000);
+</script>
+
+</body>
+</html>
